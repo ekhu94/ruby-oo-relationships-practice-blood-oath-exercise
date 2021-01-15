@@ -1,4 +1,7 @@
 require_relative '../config/environment.rb'
+require_relative '../app/models/cult'
+require_relative '../app/models/follower'
+require_relative '../app/models/bloodoath'
 
 def reload
   load 'config/environment.rb'
