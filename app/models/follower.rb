@@ -9,6 +9,14 @@ class Follower
         self.all.select { |follower| follower.age >= age }
     end
 
+    def self.most_active
+        self.all.max { |a, b| a.cults.length <=> b.cults.length }
+    end
+
+    def self.top_ten
+        self.all.max(10) { |a, b| a.cults.length <=> b.cults.length }
+    end
+
     attr_accessor :age, :life_motto, :cults
     attr_reader :name
 
@@ -26,5 +34,10 @@ class Follower
 
     def join_cult(cult)
         self.cults << cult
+        BloodOath.new(@name, self, cult)
+    end
+
+    def my_cults_slogans
+        self.cults.each { |cult| puts cult.slogan }
     end
 end
